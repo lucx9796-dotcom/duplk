@@ -1,0 +1,25 @@
+name: Duplas
+version: 1.2.0
+main: br.duplas.DuplasPlugin
+api-version: '1.21'
+description: Sistema de duplas, estruturas protegidas, chaves e renegados.
+commands:
+  dupla:
+    description: Gerencia duplas, estruturas e chaves
+    usage: /dupla <criar|remover|estrutura|lista|chave|alertas>
+  renegar:
+    description: Transforma um jogador em renegado
+    usage: /renegar <jogador>
+  desrenegar:
+    description: Tira um jogador de renegado
+    usage: /desrenegar <jogador>
+  renegado:
+    description: Gerencia renegados
+    usage: /renegado <adicionar|remover|lista>
+permissions:
+  duplas.admin:
+    description: Permite usar os comandos de administracao
+    default: op
+  duplas.ignorar:
+    description: Nao dispara alertas de invasao
+    default: false

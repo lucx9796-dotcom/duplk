@@ -1,0 +1,103 @@
+# Fuso horario usado nas mensagens de invasao
+fuso: America/Sao_Paulo
+
+# Margem (em blocos) ao redor das pecas da estrutura para considerar "dentro"
+margem: 1.0
+
+# Quantos alertas mostrar quando o jogador entra no servidor (os mais recentes)
+alertas-ao-entrar: 10
+
+chave:
+  # Dono vira renegado se o item da chave for destruido (fogo, lava, cactus, despawn, vazio...)
+  renegado-se-destruida: true
+  # Dono vira renegado se alguem de OUTRA dupla pegar a chave dele
+  renegado-se-roubada: true
+  # Dono vira renegado se simplesmente dropar a chave
+  renegado-se-dropada: false
+  # Dono vira renegado se ficar sem a PROPRIA chave no inventario (inventario, maos, armadura,
+  # cursor e grade de craft). So vale para quem ja recebeu a chave com /dupla chave dar.
+  # Chave caida no chao (recuperavel) nao conta como "sem chave".
+  renegado-se-sem-chave: true
+  # Tempo de contagem (com aviso) antes de renegar; o inventario e reconferido ao final
+  tolerancia-segundos: 30
+  # Ninguem e checado logo ao entrar / renascer
+  carencia-ao-entrar-segundos: 15
+  carencia-ao-renascer-segundos: 15
+  # Chave guardada no bau do fim conta como "com o jogador"?
+  aceitar-enderchest: false
+
+# Avisos para o DONO de cada estrutura quando OUTRO jogador faz algo ligado a ela.
+# (Entrar na estrutura ja gera alerta automaticamente.)
+# Modos:
+#   TER       jogador tem algum dos itens no inventario
+#   USAR      jogador esta com o item na mao / equipado
+#   CRAFTAR   jogador fabricou o item (mesa de craft, inventario, ferreiro)
+#   PREPARAR  jogador preparou pocoes (bancada de pocoes)
+#   RAID      jogador iniciou uma raid
+#   MATAR     jogador matou alguma das entidades
+# Itens aceitam curinga (ex: "NETHERITE_*", "*SHULKER_BOX" - use aspas por causa do *).
+# Para desligar as regras de uma estrutura deixe a lista vazia: [].
+vigias:
+  # Tempo minimo entre dois avisos iguais do mesmo jogador
+  cooldown-segundos: 20
+  regras:
+    mansao:
+      - {modo: TER, itens: [TOTEM_OF_UNDYING], aviso: "está com Totem da Imortalidade"}
+      - {modo: RAID, aviso: "iniciou uma raid"}
+      - {modo: MATAR, entidades: [EVOKER], aviso: "matou um Evoker"}
+    casa_da_bruxa:
+      - {modo: PREPARAR, aviso: "está fazendo poções"}
+      - {modo: CRAFTAR, itens: [BREWING_STAND], aviso: "fabricou uma bancada de poções"}
+      - {modo: MATAR, entidades: [WITCH], aviso: "matou uma Bruxa"}
+    camara_de_provacao:
+      - {modo: CRAFTAR, itens: [MACE], aviso: "fabricou uma Maça (Mace)"}
+      - {modo: TER, itens: [HEAVY_CORE], aviso: "está com Núcleo Pesado"}
+      - {modo: USAR, itens: [MACE], aviso: "está usando uma Maça (Mace)"}
+    end_city:
+      - {modo: TER, itens: [ELYTRA], aviso: "está com Elytra"}
+      - {modo: TER, itens: [SHULKER_SHELL, "*SHULKER_BOX"], aviso: "está com Shulker"}
+      - {modo: MATAR, entidades: [SHULKER], aviso: "matou um Shulker"}
+    bastion:
+      - {modo: USAR, itens: ["NETHERITE_*"], aviso: "está usando Netherite"}
+      - {modo: CRAFTAR, itens: ["NETHERITE_*"], aviso: "fabricou algo de Netherite"}
+      - {modo: TER, itens: [NETHERITE_UPGRADE_SMITHING_TEMPLATE], aviso: "está com molde de Netherite"}
+    fortaleza_do_nether:
+      - {modo: MATAR, entidades: [BLAZE], aviso: "matou um Blaze"}
+      - {modo: MATAR, entidades: [WITHER_SKELETON], aviso: "matou um Esqueleto Wither"}
+      - {modo: TER, itens: [BLAZE_ROD, WITHER_SKELETON_SKULL], aviso: "está com item da fortaleza"}
+    fortaleza:
+      - {modo: TER, itens: [ENDER_EYE], aviso: "está com Olho do Ender"}
+      - {modo: USAR, itens: [ENDER_EYE], aviso: "está usando Olho do Ender"}
+    cidade_antiga:
+      - {modo: MATAR, entidades: [WARDEN], aviso: "matou o Warden"}
+      - {modo: TER, itens: [ECHO_SHARD, RECOVERY_COMPASS, DISC_FRAGMENT_5], aviso: "está com item da Cidade Antiga"}
+      - {modo: CRAFTAR, itens: [RECOVERY_COMPASS], aviso: "fabricou uma Bússola de Recuperação"}
+    monumento_oceanico:
+      - {modo: MATAR, entidades: [ELDER_GUARDIAN, GUARDIAN], aviso: "matou um Guardião"}
+      - {modo: TER, itens: [SPONGE, WET_SPONGE], aviso: "está com Esponja"}
+    tesouro_enterrado:
+      - {modo: TER, itens: [HEART_OF_THE_SEA], aviso: "está com o Coração do Mar"}
+      - {modo: CRAFTAR, itens: [CONDUIT], aviso: "fabricou um Conduíte"}
+    posto_de_saqueadores:
+      - {modo: RAID, aviso: "iniciou uma raid"}
+      - {modo: TER, itens: [OMINOUS_BOTTLE], aviso: "está com Garrafa Sinistra"}
+      - {modo: MATAR, entidades: [PILLAGER], aviso: "matou um Saqueador"}
+    vila:
+      - {modo: MATAR, entidades: [VILLAGER, IRON_GOLEM], aviso: "matou um habitante da vila"}
+    mina_abandonada:
+      - {modo: MATAR, entidades: [CAVE_SPIDER], aviso: "matou uma Aranha da Caverna"}
+      - {modo: TER, itens: [CHEST_MINECART], aviso: "está com Carrinho com Baú"}
+    templo_da_selva:
+      - {modo: TER, itens: [WILD_ARMOR_TRIM_SMITHING_TEMPLATE], aviso: "está com o molde Wild"}
+    templo_do_deserto:
+      - {modo: TER, itens: [DUNE_ARMOR_TRIM_SMITHING_TEMPLATE], aviso: "está com o molde Dune"}
+    naufragio:
+      - {modo: TER, itens: [COAST_ARMOR_TRIM_SMITHING_TEMPLATE], aviso: "está com o molde Coast"}
+    ruinas_de_trilha:
+      - {modo: TER, itens: ["*POTTERY_SHERD"], aviso: "está com Fragmento de Cerâmica"}
+    portal_em_ruinas:
+      - {modo: TER, itens: [CRYING_OBSIDIAN], aviso: "está com Obsidiana Chorosa"}
+    fossil_do_nether:
+      - {modo: TER, itens: [BONE_BLOCK], aviso: "está com Bloco de Osso"}
+    iglu: []
+    ruinas_oceanicas: []
